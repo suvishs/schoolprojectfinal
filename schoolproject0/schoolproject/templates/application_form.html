@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<center><h2 style="color:#DAEA17;"><i>Application Form</i></h2></center><br>
+<form method="post" action="application_form" align="center">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Enter your name"><br>
+    <input type="text" name="dob" placeholder="Enter your DOB"><br>
+    <input type="text" name="age" placeholder="Enter your Age"><br>
+    <input type="text" name="gender" placeholder="Enter your Gender"><br>
+    <input type="text" name="phone_no" placeholder="Enter your Phone Number"><br>
+    <input type="email" name="email" placeholder="Enter your Email"><br>
+    <input type="text" name="adress" placeholder="Enter your Adress"><br><br>
+    <select name="dept" id="department">
+        <option value="0">--Select Department--</option>
+        {% for item in department  %}
+            <option value="{{ item.id }}">{{ item.departmentname }}</option>
+        {% endfor %}
+    </select>
+    <select name="emp" id="Employee">
+        <option value="0">--Select cource--</option>
+        {% for item in employee  %}
+            <option value="{{ item.deptid_id }}">{{ item.empname }}</option>
+        {% endfor %}
+    </select><br><br>
+    <h6><i>Select Purpose</i></h6>
+    <select name="purpose">
+        <option value="enquery">Enquery</option>
+        <option value="place_order">Place Order</option>
+        <option value="return">Return</option>
+    </select><br><br>
+    <h6><i>Materials Provide:</i></h6>
+    <input type="checkbox">Note_Book
+    <input type="checkbox">Pen
+    <input type="checkbox">Exam_Pappers
+    <br><br>
+    <input type="submit" name="submit">&nbsp;<a class="btn btn-default btn btn-danger"  href="logout">Log Out</a>
+</form>
+<center><a href="/">Home</a></center>
+<script>
+
+$(document).ready(function(){
+
+ var department = $("#department");
+ var Employee = $("#Employee");
+ var $options = Employee.find('option');
+ department.on('change',function(){
+    Employee.html($options.filter('[value="'+ this.value  +'"]'));
+ }).trigger('change');
+
+
+});
+</script>
+{% endblock %}

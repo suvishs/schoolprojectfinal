@@ -1,0 +1,17 @@
+.center{
+    width:400px;
+    height:200px;
+    display: block;
+}
+.bg{
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.body{
+    background-color:tomato;
+}
+.text-center{
+    background-color:white;
+    height:30px;
+}
